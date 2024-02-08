@@ -1,5 +1,6 @@
 'use client';
 
+import axios from 'axios';
 import { Variant } from '@/lib/types';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
@@ -39,7 +40,7 @@ const AuthForm = () => {
 		setIsLoading(true);
 
 		if (variant === 'REGISTER') {
-			// Axios register
+			axios.post('/api/register', data);
 		}
 
 		if (variant === 'LOGIN') {
