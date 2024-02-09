@@ -53,3 +53,11 @@ export interface DesktopSidebarProps {
 export interface AvatarProps {
 	user?: User;
 }
+
+export interface UserListProps {
+	items: User[];
+}
+
+export interface UserBoxProps {
+	data: User;
+}
