@@ -1,5 +1,6 @@
-import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
+import { User } from '@prisma/client';
 import { IconType } from 'react-icons';
+import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
 
 export interface InputProps {
 	label: string;
@@ -36,4 +37,19 @@ export interface DesktopItemProps {
 	href: string;
 	onClick?: () => void;
 	active?: boolean;
+}
+
+export interface MobileItemProps {
+	icon: any;
+	href: string;
+	onClick?: () => void;
+	active?: boolean;
+}
+
+export interface DesktopSidebarProps {
+	currentUser: User;
+}
+
+export interface AvatarProps {
+	user?: User;
 }

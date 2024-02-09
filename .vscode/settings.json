@@ -1,4 +1,6 @@
 {
-	"WillLuke.nextjs.addTypesOnSave": true,
-	"WillLuke.nextjs.hasPrompted": true
+  "WillLuke.nextjs.addTypesOnSave": true,
+  "WillLuke.nextjs.hasPrompted": true,
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }
