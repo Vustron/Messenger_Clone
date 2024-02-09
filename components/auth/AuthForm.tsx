@@ -3,18 +3,32 @@
 import axios from 'axios';
 import { Variant } from '@/lib/types';
 import { toast } from 'react-hot-toast';
-import { signIn } from 'next-auth/react';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
-import { useCallback, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { BsGithub, BsGoogle } from 'react-icons/bs';
+import { signIn, useSession } from 'next-auth/react';
+import { useCallback, useEffect, useState } from 'react';
 import AuthSocialButton from '@/components/auth/AuthSocialButton';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 
 const AuthForm = () => {
+	// init session
+	const session = useSession();
+
+	// init router
+	const router = useRouter();
+
 	// init state
 	const [variant, setVariant] = useState<Variant>('LOGIN');
 	const [isLoading, setIsLoading] = useState(false);
+
+	useEffect(() => {
+		if (session?.status === 'authenticated') {
+			// console.log('Authenticated');
+			router.push('/users');
+		}
+	}, [session?.status, router]);
 
 	const toggleVariant = useCallback(() => {
 		if (variant === 'LOGIN') {
@@ -44,6 +58,7 @@ const AuthForm = () => {
 		if (variant === 'REGISTER') {
 			axios
 				.post('/api/register', data)
+				.then(() => signIn('credentials', data))
 				.catch(() => toast.error('Something went wrong!'))
 				.finally(() => setIsLoading(false));
 		}
@@ -60,6 +75,7 @@ const AuthForm = () => {
 
 					if (callback?.ok && !callback?.error) {
 						toast.success('Logged in!');
+						router.push('/users');
 					}
 				})
 				.finally(() => setIsLoading(false));
