@@ -66,3 +66,8 @@ export interface UserBoxProps {
 export interface ConversationListProps {
 	initialItems: FullConversationType[];
 }
+
+export interface ConversationBoxProps {
+	data: FullConversationType;
+	selected?: boolean;
+}
