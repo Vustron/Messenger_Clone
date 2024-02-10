@@ -1,6 +1,7 @@
-import { User } from '@prisma/client';
-import { IconType } from 'react-icons';
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
+import { Conversation, User } from '@prisma/client';
+import { FullConversationType } from '@/lib/types';
+import { IconType } from 'react-icons';
 
 export interface InputProps {
 	label: string;
@@ -60,4 +61,8 @@ export interface UserListProps {
 
 export interface UserBoxProps {
 	data: User;
+}
+
+export interface ConversationListProps {
+	initialItems: FullConversationType[];
 }
