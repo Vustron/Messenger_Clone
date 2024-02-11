@@ -71,3 +71,13 @@ export interface ConversationBoxProps {
 	data: FullConversationType;
 	selected?: boolean;
 }
+
+export interface ConversationProps {
+	conversationId: string;
+}
+
+export interface HeaderProps {
+	conversation: Conversation & {
+		users: User[];
+	};
+}
