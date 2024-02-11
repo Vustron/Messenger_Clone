@@ -4,6 +4,7 @@ import { ConversationProps } from '@/lib/interfaces';
 import EmptyState from '@/components/ui/EmptyState';
 import getMessages from '@/lib/actions/getMessages';
 import Body from '@/components/conversations/Body';
+import Form from '@/components/conversations/Form';
 
 const ConversationPage = async ({ params }: { params: ConversationProps }) => {
 	// fetch conversation
@@ -25,7 +26,8 @@ const ConversationPage = async ({ params }: { params: ConversationProps }) => {
 		<div className='lg:pl-80 h-full'>
 			<div className='h-full flex flex-col'>
 				<Header conversation={conversation} />
-				<Body />
+				<Body initialMessages={messages} />
+				<Form />
 			</div>
 		</div>
 	);

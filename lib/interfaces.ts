@@ -1,6 +1,6 @@
 import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
+import { FullConversationType, FullMessageType } from '@/lib/types';
 import { Conversation, User } from '@prisma/client';
-import { FullConversationType } from '@/lib/types';
 import { IconType } from 'react-icons';
 
 export interface InputProps {
@@ -80,4 +80,26 @@ export interface HeaderProps {
 	conversation: Conversation & {
 		users: User[];
 	};
+}
+
+export interface MessageInputProps {
+	placeholder?: string;
+	id: string;
+	type?: string;
+	required?: boolean;
+	register: UseFormRegister<FieldValues>;
+	errors: FieldErrors;
+}
+
+export interface BodyProps {
+	initialMessages: FullMessageType[];
+}
+
+export interface MessageBoxProps {
+	data: FullMessageType;
+	isLast?: boolean;
+}
+
+export interface SeenProps {
+	conversationId?: string;
 }
