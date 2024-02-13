@@ -103,3 +103,11 @@ export interface MessageBoxProps {
 export interface SeenProps {
 	conversationId?: string;
 }
+
+export interface ProfileDrawerProps {
+	isOpen: boolean;
+	onClose: () => void;
+	data: Conversation & {
+		users: User[];
+	};
+}
