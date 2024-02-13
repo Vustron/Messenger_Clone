@@ -7,7 +7,7 @@ export interface InputProps {
 	label: string;
 	id: string;
 	type?: string;
-	required?: string;
+	required?: boolean;
 	register: UseFormRegister<FieldValues>;
 	errors: FieldErrors;
 	disabled?: boolean;
@@ -110,4 +110,25 @@ export interface ProfileDrawerProps {
 	data: Conversation & {
 		users: User[];
 	};
+}
+
+export interface ModalProps {
+	isOpen?: boolean;
+	onClose: () => void;
+	children: React.ReactNode;
+}
+
+export interface ConfirmModalProps {
+	isOpen?: boolean;
+	onClose: () => void;
+}
+
+export interface DeleteProps {
+	conversationId?: string;
+}
+
+export interface SettingsModalProps {
+	isOpen?: boolean;
+	onClose: () => void;
+	currentUser: User;
 }
