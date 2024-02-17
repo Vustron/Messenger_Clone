@@ -65,6 +65,7 @@ export interface UserBoxProps {
 
 export interface ConversationListProps {
 	initialItems: FullConversationType[];
+	users: User[];
 }
 
 export interface ConversationBoxProps {
@@ -131,4 +132,28 @@ export interface SettingsModalProps {
 	isOpen?: boolean;
 	onClose: () => void;
 	currentUser: User;
+}
+
+export interface GroupChatModalProps {
+	isOpen?: boolean;
+	onClose: () => void;
+	users: User[];
+}
+
+export interface SelectProps {
+	label: string;
+	value?: Record<string, any>;
+	onChange: (value: Record<string, any>) => void;
+	options: Record<string, any>[];
+	disabled?: boolean;
+}
+
+export interface AvatarGroupProps {
+	users?: User[];
+}
+
+export interface ImageModalProps {
+	isOpen?: boolean;
+	onClose: () => void;
+	src?: string | null;
 }

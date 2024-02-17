@@ -2,15 +2,15 @@
 
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { SettingsModalProps } from '@/lib/interfaces';
+import { CldUploadButton } from 'next-cloudinary';
 import { useRouter } from 'next/navigation';
+import Button from '@/components/ui/Button';
 import Modal from '@/components/ui/Modal';
 import Input from '@/components/ui/Input';
 import { toast } from 'react-hot-toast';
 import { useState } from 'react';
 import axios from 'axios';
 import Image from 'next/image';
-import { CldUploadButton } from 'next-cloudinary';
-import Button from '../ui/Button';
 
 const SettingsModal: React.FC<SettingsModalProps> = ({
 	isOpen,
@@ -92,7 +92,7 @@ const SettingsModal: React.FC<SettingsModalProps> = ({
 										height='48'
 										className='rounded-full'
 										src={
-											image || currentUser?.image || 'images/placeholder.jpg'
+											image || currentUser?.image || '/images/placeholder.jpg'
 										}
 										alt='Avatar'
 									/>

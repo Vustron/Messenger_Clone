@@ -1,7 +1,7 @@
 'use client';
 
-import { Conversation, Message, User } from '@prisma/client';
 import { ConversationBoxProps } from '@/lib/interfaces';
+import AvatarGroup from '@/components/ui/AvatarGroup';
 import useOtherUser from '@/lib/hooks/useOtherUser';
 import { useCallback, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
@@ -87,7 +87,11 @@ const ConversationBox: React.FC<ConversationBoxProps> = ({
 			)}
 			onClick={handleClick}
 		>
-			<Avatar user={otherUser} />
+			{data.isGroup ? (
+				<AvatarGroup users={data.users} />
+			) : (
+				<Avatar user={otherUser} />
+			)}
 
 			<div className='min-w-0 flex-1'>
 				<div className='focus:outline-none'>
