@@ -1,5 +1,6 @@
 import getCurrentUser from '@/lib/actions/getCurrentUser';
 import { SeenProps } from '@/lib/interfaces';
+import { pusherServer } from '@/lib/pusher';
 import { NextResponse } from 'next/server';
 import db from '@/lib/db';
 
@@ -59,6 +60,21 @@ export async function POST(req: Request, { params }: { params: SeenProps }) {
 				},
 			},
 		});
+
+		await pusherServer.trigger(currentUser.email, 'conversation:update', {
+			id: conversationId,
+			messages: [updatedMessage],
+		});
+
+		if (lastMessage.seenIds.indexOf(currentUser.id) !== -1) {
+			return NextResponse.json(conversation);
+		}
+
+		await pusherServer.trigger(
+			conversationId!,
+			'message:update',
+			updatedMessage
+		);
 
 		return NextResponse.json(updatedMessage);
 	} catch (error: any) {
