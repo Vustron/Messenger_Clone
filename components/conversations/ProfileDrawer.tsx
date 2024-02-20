@@ -4,6 +4,7 @@ import ConfirmModal from '@/components/modals/ConfirmModal';
 import { Transition, Dialog } from '@headlessui/react';
 import { ProfileDrawerProps } from '@/lib/interfaces';
 import AvatarGroup from '@/components/ui/AvatarGroup';
+import useActiveList from '@/lib/hooks/useActiveList';
 import useOtherUser from '@/lib/hooks/useOtherUser';
 import { Fragment, useMemo, useState } from 'react';
 import { IoClose, IoTrash } from 'react-icons/io5';
@@ -17,6 +18,12 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
 }) => {
 	// fetch other user hook
 	const otherUser = useOtherUser(data);
+
+	// get active status
+	const { members } = useActiveList();
+
+	// init status
+	const isActive = members.indexOf(otherUser?.email!) !== -1;
 
 	// init state
 	const [confirmOpen, setConfirmOpen] = useState(false);
@@ -34,8 +41,8 @@ const ProfileDrawer: React.FC<ProfileDrawerProps> = ({
 			return `${data.users.length} members`;
 		}
 
-		return 'Active';
-	}, [data]);
+		return isActive ? 'active' : 'offline';
+	}, [data, isActive]);
 
 	return (
 		<>

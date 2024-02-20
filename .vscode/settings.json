@@ -3,5 +3,5 @@
 	"WillLuke.nextjs.hasPrompted": true,
 	"typescript.tsdk": "node_modules\\typescript\\lib",
 	"typescript.enablePromptUseWorkspaceTsdk": true,
-	"cSpell.words": ["convo"]
+	"cSpell.words": ["convo", "nextauth"]
 }

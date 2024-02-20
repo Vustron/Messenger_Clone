@@ -3,6 +3,7 @@
 import { HiChevronLeft, HiEllipsisHorizontal } from 'react-icons/hi2';
 import ProfileDrawer from '@/components/conversations/ProfileDrawer';
 import AvatarGroup from '@/components/ui/AvatarGroup';
+import useActiveList from '@/lib/hooks/useActiveList';
 import useOtherUser from '@/lib/hooks/useOtherUser';
 import { HeaderProps } from '@/lib/interfaces';
 import Avatar from '@/components/ui/Avatar';
@@ -16,14 +17,20 @@ const Header: React.FC<HeaderProps> = ({ conversation }) => {
 	// init user hook
 	const otherUser = useOtherUser(conversation);
 
+	// get active status
+	const { members } = useActiveList();
+
+	// init status
+	const isActive = members.indexOf(otherUser?.email!) !== -1;
+
 	// init status
 	const statusText = useMemo(() => {
 		if (conversation.isGroup) {
 			return `${conversation.users.length} members`;
 		}
 
-		return 'Active';
-	}, [conversation]);
+		return isActive ? 'active' : 'offline';
+	}, [conversation, isActive]);
 
 	return (
 		<>

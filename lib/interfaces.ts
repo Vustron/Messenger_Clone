@@ -157,3 +157,10 @@ export interface ImageModalProps {
 	onClose: () => void;
 	src?: string | null;
 }
+
+export interface ActiveListStore {
+	members: string[];
+	add: (id: string) => void;
+	remove: (id: string) => void;
+	set: (id: string[]) => void;
+}
